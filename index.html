@@ -6,7 +6,7 @@
     <title>Moja Walentynka</title>
     <style>
         body {
-            background-image: url('image.png'); /* Tło które wysłałeś */
+            background-image: url('https://cdn.discordapp.com/attachments/711880934227443853/1338947925987823770/8cwqzt.png?ex=67acefee&is=67ab9e6e&hm=de2d3ddb593456721827d61f4058083e8cd298633a3bc74d5d198ec979060281&');
             background-size: cover;
             background-position: center;
             text-align: center;
@@ -21,13 +21,20 @@
             border-radius: 10px;
             display: inline-block;
         }
-        .yes-button {
+        .button-container {
+            margin-top: 20px;
+        }
+        .yes-button, .no-button {
             font-size: 1.5rem;
             padding: 10px 20px;
-            margin-top: 20px;
             cursor: pointer;
+            margin: 10px;
+            position: relative;
         }
-        .bear-container {
+        .no-button {
+            position: absolute;
+        }
+        .heart-container {
             display: none;
             margin-top: 20px;
         }
@@ -35,17 +42,63 @@
 </head>
 <body>
     <div class="question">Czy zostaniesz moją Walentynką? ❤️</div>
-    <br>
-    <button class="yes-button" onclick="showBear()">Tak!</button>
-    <div class="bear-container" id="bear">
-        <img src="https://cdn.discordapp.com/attachments/949203893701730304/1338944363342069940/8cwqzt.png?ex=67acec9c&is=67ab9b1c&hm=b6df65bbaf2ffbb63952d71d8b0bd46535b23e825df9b59935c7e2c1459f8026&" alt="Miś z sercem" width="300">
+    <div class="button-container">
+        <button class="yes-button" onclick="showHeart()">Tak!</button>
+        <button class="no-button" id="noButton">Nie</button>
+    </div>
+    <div class="heart-container" id="heart">
+        <img src="https://cdn.discordapp.com/attachments/711880934227443853/1338947926340407341/serduszko.png?ex=67acefee&is=67ab9e6e&hm=4f0f2c725223f5876afc901ee25baba87b4dc74c64b10478353f965a690dfc41&" alt="Serduszko" width="300">
         <h2>Wiedziałem, kocham Cię! ❤️</h2>
     </div>
-
     <script>
-        function showBear() {
-            document.getElementById('bear').style.display = 'block';
+        function showHeart() {
+            document.getElementById('heart').style.display = 'block';
+            confetti();
         }
+        
+        function confetti() {
+            let count = 200;
+            let defaults = {
+                origin: { y: 0.6 }
+            };
+            
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+            
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+            });
+            fire(0.2, {
+                spread: 60,
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                scalar: 1.2
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 45,
+            });
+        }
+        
+        document.getElementById('noButton').addEventListener('mouseover', function() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            this.style.left = x + 'px';
+            this.style.top = y + 'px';
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2"></script>
 </body>
 </html>
