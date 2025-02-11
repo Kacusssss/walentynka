@@ -3,55 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walentynka</title>
+    <title>Moja Walentynka</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            background-color: pink;
-            font-family: Arial, sans-serif;
+            background-image: url('image.png'); /* Tło które wysłałeś */
+            background-size: cover;
+            background-position: center;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
-        h1 {
-            color: red;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        button {
-            font-size: 20px;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            cursor: pointer;
+        .question {
+            margin-top: 20%;
+            font-size: 2rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
             border-radius: 10px;
+            display: inline-block;
         }
-        .yes {
-            background-color: lightgreen;
+        .yes-button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
         }
-        .no {
-            background-color: lightcoral;
-            position: absolute;
+        .bear-container {
+            display: none;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Czy zostaniesz moją Walentynką? 💖</h1>
-    <div class="buttons">
-        <button class="yes" onclick="alert('Wiedziałem! 💕')">Tak</button>
-        <button class="no" onmouseover="moveButton()">Nie</button>
+    <div class="question">Czy zostaniesz moją Walentynką? ❤️</div>
+    <br>
+    <button class="yes-button" onclick="showBear()">Tak!</button>
+    <div class="bear-container" id="bear">
+        <img src="bear_with_heart.png" alt="Miś z sercem" width="300">
+        <h2>Wiedziałem, kocham Cię! ❤️</h2>
     </div>
 
     <script>
-        function moveButton() {
-            let btn = document.querySelector('.no');
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 50);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+        function showBear() {
+            document.getElementById('bear').style.display = 'block';
         }
     </script>
 </body>
